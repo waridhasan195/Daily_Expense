@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Daily_Expense.Models
@@ -16,5 +17,14 @@ namespace Daily_Expense.Models
 
         [Column(TypeName = "nvarchar(50)")]
         public string Type { get; set; } = "Expense";
+
+        [NotMapped]
+        public string? TitlewithIcon
+        {
+            get
+            {
+                return this.Title + " " + this.Icon; 
+            }
+        }
     }
 }

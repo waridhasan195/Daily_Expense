@@ -47,6 +47,7 @@ namespace Daily_Expense.Controllers
 
         // GET: Category/AddOrEdit
         public IActionResult AddOrEdit(int id=0)
+        
         {
             if(id == 0)
             {
@@ -56,7 +57,6 @@ namespace Daily_Expense.Controllers
             {
                 return View(_context.Categories.Find(id));
             }
-
         }
 
         // POST: Category/AddOrEdit
@@ -64,7 +64,7 @@ namespace Daily_Expense.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
+        public async Task<IActionResult> AddOrEdit(Category category)
         {
             if (ModelState.IsValid)
             {
