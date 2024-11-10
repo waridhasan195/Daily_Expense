@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<Daily_Expense.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["PageTitle"] = "Categories";
+    ViewData["PageActionText"] = "+ New Category";
+    ViewData["PageActionUrl"] = "/Category/AddOrEdit";
 }
 
 <div class="row">
     <div class="col-md-7">
-        <ejs-grid id="categories" dataSource="@Model" gridLines="None">
+        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true" height="270">
+            <e-grid-pagesettings pageCount="2"></e-grid-pagesettings>
             <e-grid-columns>
                 <e-grid-column headerText="Category" field="TitlewithIcon"></e-grid-column>
-                <e-grid-column headerText="Type" template="#typeColumnTemplate"></e-grid-column>
-                <e-grid-column headerText="Actions"></e-grid-column>
-
+                <e-grid-column headerText="Type" template="#typeColumnTemplate" width="150px"></e-grid-column>
+                <e-grid-column headerText="Actions" width="150px" template="#actionColumnTemplate"></e-grid-column>
             </e-grid-columns>
         </ejs-grid>
     </div>
@@ -24,4 +26,19 @@
     ${else}
         <span class="badge bg-danger">${Type}</span>
     ${/if}
+</script>
+
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm" href="/Category/AddOrEdit/${CategoryId}">
+            <i class="fa-solid fa-pen fa-lg"></i>    
+        </a>
+        <form method="post" action="/Category/Delete/${CategoryId}">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration" 
+                    onclick="return confirm(&quot;Are you sure to delete this record ?&quot;)">
+                    <i class="fa-solid fa-trash-can fa-lg text-dande"></i>
+            </button>
+        </form>
+    </div>
 </script>

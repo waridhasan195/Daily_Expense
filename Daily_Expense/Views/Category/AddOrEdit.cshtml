@@ -1,9 +1,11 @@
 ﻿@model Daily_Expense.Models.Category
 
 
-@* @{
-    ViewData["Title"] = "Create";
-} *@
+@{
+    ViewData["PageTitle"] = Model.CategoryId ==0?  "Create a new Category" : "Edit Category";
+}
+
+
 
 <h1>Create</h1>
 
@@ -34,11 +36,22 @@
                     <ejs-textbox id="Icon" asp-for="Icon" placeholder="Icon" ejs-for="Icon" floatLabelType="Always"></ejs-textbox>
                     <span asp-validation-for="Icon" class="text-danger"></span>
                 </div>
+                @if (Model.CategoryId == 0)
+                {
+                    <div class="form-group mt-2">
+                        <ejs-button type="submit" id="successbtn" cssClass="e-success" content="Create"></ejs-button>
 
-                <div class="form-group mt-2">
-                    <ejs-button type="submit" id="successbtn" cssClass="e-success" content="Create"></ejs-button>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group mt-2">
+                        <ejs-button type="submit" id="successbtn" cssClass="e-primary" content="Update"></ejs-button>
 
-                </div>
+                    </div>
+                }
+
+                
             </form>
         </di>
 

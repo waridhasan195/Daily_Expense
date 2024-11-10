@@ -97,3 +97,12 @@ body {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+.btn:focus, .btn:active{
+    outline: !important;
+    box-shadow: none;
+}
+.no-a-decoration, .no-a-decoration:hover{
+    text-decoration: none;
+    color: inherit;
+}
