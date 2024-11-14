@@ -10,7 +10,7 @@ namespace Daily_Expense.Models
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public int Amout { get; set; }
 
@@ -18,5 +18,14 @@ namespace Daily_Expense.Models
         public string Note { get; set; }
 
         public DateTime Date { get; set; } = DateTime.Now;
+
+        //[NotMapped]
+        //public int CetegoryExpenseIncome 
+        //{
+        //    get
+        //    {
+        //        return (Category.Type == "Expense", +" - " + : +" + " + Amout.ToString());
+        //    }
+        //}
     }
 }

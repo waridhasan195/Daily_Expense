@@ -6,46 +6,42 @@
     ViewData["PageActionUrl"] = "/Transaction/AddOrEdit";
 }
 
+<div class="row">
+    <div class="col-md-7">
+        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true" height="270" toolbar="@(new List<string>() { "Search"})">
+            <e-grid-pagesettings pageCount="2"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="TransactionId" field="TransactionId"></e-grid-column>
+                <e-grid-column headerText="Category" field="Category" width="150px"></e-grid-column>
+                <e-grid-column headerText="Amout" field="Amout" width="150px"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" width="150px"></e-grid-column>
+                <e-grid-column headerText="Note" field="Note" width="150px"></e-grid-column>
+                <e-grid-column headerText="Actions" width="150px" template="#actionColumnTemplate"></e-grid-column>
+                
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
+<script>
+function created() {
+       var grid = document.getElementById("Grid").ej2_instances[0];
+        document.getElementById(grid.element.id + "_searchbar").addEventListener('keyup', () => {
+                grid.search(event.target.value)
+        });
+    }
+</script>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amout)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amout)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TransactionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm" href="/Transaction/AddOrEdit/${TransactionId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form method="post" action="/Transaction/Delete/${TransactionId}">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+                    onclick="return confirm(&quot;Are you sure to delete this record ?&quot;)">
+                    <i class="fa-solid fa-trash-can fa-lg text-dande"></i>
+            </button>
+        </form>
+    </div>
+</script>
