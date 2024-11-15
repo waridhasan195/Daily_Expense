@@ -9,7 +9,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DailyExpenseDbContext>(options => 
         options.UseSqlServer(builder.Configuration.GetConnectionString("DailyExpenseConnectionString")));
 
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpQnxbf1x0ZFxMY11bRXFPIiBoS35RckRiWXhccXdUR2hbVUJx");
+//Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpQnxbf1x0ZFxMY11bRXFPIiBoS35RckRiWXhccXdUR2hbVUJx");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpQnxbf1x0ZFxMY11bRXFPIiBoS35RckRiWHtcc3dSR2JbWUV0");
 
 
 var app = builder.Build();
@@ -31,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=DashBoard}/{action=Index}/{id?}");
 
 app.Run();

@@ -7,14 +7,14 @@
 }
 
 <div class="row">
-    <div class="col-md-7">
-        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true" height="270" toolbar="@(new List<string>() { "Search"})">
+    <div class="col-md-9">
+        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true" height="470" toolbar="@(new List<string>() { "Search"})">
             <e-grid-pagesettings pageCount="2"></e-grid-pagesettings>
             <e-grid-columns>
-                <e-grid-column headerText="TransactionId" field="TransactionId"></e-grid-column>
-                <e-grid-column headerText="Category" field="Category" width="150px"></e-grid-column>
-                <e-grid-column headerText="Amout" field="Amout" width="150px"></e-grid-column>
-                <e-grid-column headerText="Date" field="Date" width="150px"></e-grid-column>
+                <e-grid-column headerText="TransactionId" field="TransactionId" ></e-grid-column>
+                <e-grid-column headerText="Category" field="Category.TitlewithIcon" width="180px"></e-grid-column>
+                <e-grid-column headerText="Amout" field="Formated_Salary" width="150px"></e-grid-column>
+                <e-grid-column headerText="Date" format="dd-MMM-yyyy" type="date" field="Date" textAlign="Left" width="180px"></e-grid-column>
                 <e-grid-column headerText="Note" field="Note" width="150px"></e-grid-column>
                 <e-grid-column headerText="Actions" width="150px" template="#actionColumnTemplate"></e-grid-column>
                 

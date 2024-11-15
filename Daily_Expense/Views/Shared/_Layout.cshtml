@@ -15,6 +15,9 @@
     <script src="https://cdn.syncfusion.com/ej2/27.1.48/dist/ej2.min.js"></script>
 </head>
 <body>
+
+    <partial name="_sideBar"></partial>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -36,48 +39,54 @@
             </div>
         </nav>
     </header>
-    <div class="container mt-5">
 
+<div class="main-content">
+    <div class="container mt-5">
         <div class="row justify-content-center"
-        <div class="col-md-10">
-            <main role="main" class="pb-3">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="d-flex flex-column mb-5">
-                            <div class="d-flex mb-1">
-                                <div class="flex-grow-1">
-                                    <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+            <div class="@(ViewData["isDashBoard"] == null? "col-md-10" : "col-md-12")">
+                <main role="main" class="pb-3">
+                        @if (ViewData["isDashBoard"] == null)
+                        {
+                            <div class="row">
+                            <div class="col-md-7">
+                                <div class="d-flex flex-column mb-5">
+                                    <div class="d-flex mb-1">
+                                        <div class="flex-grow-1">
+                                            <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                        </div>
+                                        <div>
+                                                @if (@ViewData["PageActionText"] != null)
+                                                {
+                                                            <a class="btn btn-success" href="@ViewData["PageActionUrl"]">
+                                                        @ViewData["PageActionText"]
+                                                            </a>
+                                                }
+                                        </div>
+                                    </div>
+                                    <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>
+
                                 </div>
-                                <div>
-                                        @if (@ViewData["PageActionText"] != null)
-                                        {
-                                                <a class="btn btn-success" href="@ViewData["PageActionUrl"]">
-                                                @ViewData["PageActionText"]
-                                                </a>
-                                        }                                
-                                </div>
+
                             </div>
-                            <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>
 
                         </div>
+                    }
+                            @RenderBody()
+                    
+                    
+                </main>
+            </div>
 
-                    </div>
-
-                </div>
-                    @RenderBody()
-            </main>
-        </div>
-
-        </div>
-
+         </div>
 
     </div>
+</div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Daily_Expense - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    @* <footer class="border-top footer text-muted"> *@
+    @*     <div class="container"> *@
+    @*         &copy; 2024 - Daily_Expense - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+    @*     </div> *@
+    @* </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

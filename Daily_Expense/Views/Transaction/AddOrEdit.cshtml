@@ -25,11 +25,13 @@
                     ignoreAccent="true" filterType="Contains">
 
                         <e-dropdownlist-fields value="CategoryId" text="TitlewithIcon" ></e-dropdownlist-fields>
+                        
                     </ejs-dropdownlist>
+                    <span asp-validation-for="CategoryId" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
                     <ejs-numerictextbox id="amount" min="0" ejs-for="Amout" Type="text" placeholder="Amout" floatLabelType="Always" format="c0"></ejs-numerictextbox>
-                    <span asp-validation-for="Amout" class="text-danger"></span>
+                    <span asp-validation-for="Amout" class="text-danger fs-6"></span>
                 </div>
 
                 <div class="mb-3">
